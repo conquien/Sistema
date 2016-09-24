@@ -84,7 +84,7 @@ public class BDD {
 	}
 	
 	public void ejecutar(){
-		PreparedStatement a = conexion.prepareStatement();
+		PreparedStatement a = null;
 		
 	}
 	
