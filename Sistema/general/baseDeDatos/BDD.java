@@ -32,7 +32,7 @@ public class BDD {
 		try{
 		    Properties propiedades = new Properties();
 		    propiedades.load(new FileInputStream("config"));	    		   
-		    return propiedades.getProperty("RUTABASE2");
+		    return propiedades.getProperty("RUTABASE");
 		}catch(Exception e1){
 			e1.printStackTrace();
 			return "";
