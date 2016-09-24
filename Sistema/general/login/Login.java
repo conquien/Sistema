@@ -1,8 +1,6 @@
 package login;
 
 import java.awt.EventQueue;
-import java.awt.Menu;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -15,9 +13,10 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.sql.Connection;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 public class Login {
 
@@ -114,18 +113,30 @@ public class Login {
 						return;
 					}
 						
-					if(bdd.getConexion().isClosed())
+					if(bdd.getConexion().isClosed()){
 		    			JOptionPane.showMessageDialog(null, "Se devolvio una conexion cerrada.");
-		    		else
-		    		{
+		    			return;
+					}
+		    		
+					PreparedStatement st = bdd.getConexion().prepareStatement("SELECT ID_USUA FROM USUARIOS WHERE CODI_USUA = ? AND PASS_USUA = ?");
+					st.setString(0, txtUsuario.getText());
+					st.setString(1, p);
+		    		ResultSet rs = st.executeQuery();
+					
+		    		if (rs.next()){
 		    			/* conexion abierta */
 		    			MenuPrincipal a = new MenuPrincipal();					
 						a.setVisible(true);
 						frame.dispose();
 						bdd.getConexion().close();
 		    		}
-				} catch (Throwable e1){
-					e1.printStackTrace();
+		    		else
+		    		{
+		    			JOptionPane.showMessageDialog(null, "Usuario / Contraseña erroneo. Verifique los datos ingresados.");
+		    			return;
+		    		}
+				} catch (Exception e1){
+					Error err = new Error();
 				}
 			}
 		});
