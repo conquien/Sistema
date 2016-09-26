@@ -8,6 +8,7 @@ import javax.swing.JTextField;
 
 import baseDeDatos.BDD;
 import menu.MenuPrincipal;
+import registro.ErrorManager;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -17,6 +18,7 @@ import javax.swing.JPasswordField;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+
 
 public class Login {
 
@@ -136,7 +138,8 @@ public class Login {
 		    			return;
 		    		}
 				} catch (Exception e1){
-					Error err = new Error();
+					ErrorManager err = new ErrorManager(0, e1);
+					
 				}
 			}
 		});

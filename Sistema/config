@@ -1,4 +1,4 @@
-RUTABASE=server:e:\server\clientesvb\startex_new\startex.fdb
+RUTABASE=server:e:\\server\\clientesvb\\startex_new\\startex.fdb
 RUTAREPORTES=\\server\server\clientesvb\Startex_new\reportes
 SISTEMA=STARTEX_NEW
 RUTAPADRON=server:e:\server\clientesvb\Startex_new\PADRONIB.FDB

@@ -20,6 +20,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+import registro.ErrorManager;
+
 public class BDD {
 	private Connection conexion = null;
 	
@@ -32,7 +34,7 @@ public class BDD {
 		try{
 		    Properties propiedades = new Properties();
 		    propiedades.load(new FileInputStream("config"));	    		   
-		    return propiedades.getProperty("RUTABASE2");
+		    return propiedades.getProperty("RUTABASE");
 		}catch(Exception e1){
 			e1.printStackTrace();
 			return "";
@@ -46,7 +48,7 @@ public class BDD {
 	    		Class.forName("org.firebirdsql.jdbc.FBDriver").newInstance();
 	    		this.setConexion(DriverManager.getConnection("jdbc:firebirdsql:" + rutaBase, "SYSDBA", "masterkey"));	
 	    	}catch(Exception e){    			    			    	
-	    		showQuickErrorDialog(null, e);	    		
+	    		ErrorManager err = new ErrorManager(0,e);   		
 	    		return;
 	    	}
 	    }			
